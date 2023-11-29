@@ -18,6 +18,12 @@ pip install -r requirements.txt
 
 ## Running the App
 
+0. Activating Python Virtual Environment
+
+```
+    Scripts\activate
+```
+
 1. Setting the Environment Variables
 
 ```bash
