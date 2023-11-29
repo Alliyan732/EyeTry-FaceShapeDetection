@@ -27,15 +27,16 @@ pip install -r requirements.txt
 
 2. Running the App
 
-   ```bash
-   flask run -p port
-   ```
+```bash
+    flask run -p port
+```
 
 ## Endpoints:
 
 ```
 method: POST
 route: /upload
+parameters: file
 
 returns:
 {
