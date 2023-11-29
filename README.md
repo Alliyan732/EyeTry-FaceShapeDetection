@@ -21,7 +21,7 @@ pip install -r requirements.txt
 0. Activating Python Virtual Environment
 
 ```
-    Scripts\activate
+Scripts\activate
 ```
 
 1. Setting the Environment Variables
