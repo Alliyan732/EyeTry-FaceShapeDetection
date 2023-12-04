@@ -1,7 +1,6 @@
-FROM python:3-alpine3.11
+FROM python:3.9-bookworm
 WORKDIR /app
 COPY . /app
-RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 EXPOSE 4444
 ENV FLASK_APP=main.py
