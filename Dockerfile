@@ -1,4 +1,4 @@
-FROM python:3-alpine3.18
+FROM python:3-alpine3.11
 WORKDIR /app
 COPY . /app
 RUN pip install --upgrade pip
