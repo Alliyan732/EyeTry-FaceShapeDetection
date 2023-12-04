@@ -6,4 +6,4 @@ RUN pip install -r requirements.txt
 EXPOSE 4444
 ENV FLASK_APP=main.py
 ENV FLASK_ENV=development
-CMD ["flask", "run", "--port=4444"]
+CMD ["flask", "run", "--host=0.0.0.0", "--port=4444"]
