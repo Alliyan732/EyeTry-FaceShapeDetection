@@ -2,12 +2,14 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
 from utility.image_utility import save_image, delete_image
 from utility.predict import predict
+from utility.face_prediction import isFace, isFaceAlt
 
 import torch
 import torch.nn as nn
 from torchvision.models import efficientnet_b4
 
-device = "cuda" if torch.cuda.is_available() else "cpu"
+# device = "cuda" if torch.cuda.is_available() else "cpu"
+device = torch.device("cpu")
 
 app = Flask(__name__)
 CORS(app)
@@ -25,22 +27,24 @@ model.eval()
 @app.route('/upload', methods=['POST'])
 def upload_file():
     if 'file' not in request.files:
-        print("error 1")
         return jsonify({'status': 'No file part'}), 400
 
     file = request.files['file']
     if file.filename == '':
-        print("error 2")
         return jsonify({'status': 'No selected files'}), 400
 
     if file:
-        print("error 3")
         image_path = save_image(file)
+
+        isFacePresent = isFaceAlt(image_path)
+
+        if (isinstance(isFacePresent, tuple)):
+            return jsonify({'status': 'error', 'message': "No face is detected in the image"}), 400
+
         result = predict(image_path, model)
         delete_image(image_path)
-        return jsonify({'status': 'success', 'prediction': result}), 200
+        return jsonify({'status': 'success', 'prediction': result}), 200   
     
-    print("error 4")
     return jsonify({'status': 'error'}), 400
 
 
